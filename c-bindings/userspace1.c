@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "test.h"
 
 int main(){
@@ -15,12 +16,13 @@ int main(){
     char temp[50];
 
     printf("Enter a word to be sent via the RPMsg channel: ");
-    scanf("%s\n", temp);
+    //scanf("%s\n", temp);
+    fgets(temp, 50, stdin);
     PRU_sendMsg(&p1, temp);
     //printf("%i\n", p1.chanPort);
     //exit(0);
     PRU_showRegs(&p1);
-    printf("Loopback: %s\n", PRU_getMsg(&p1));
+    printf("\nLoopback: %s\n", PRU_getMsg(&p1));
     PRU_disable(&p1);
     PRUSS_shutDown(&pruss);
     return 0;
