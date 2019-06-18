@@ -45,3 +45,9 @@ MANIFEST
 *.cproject
 *.ccsproject
 *.settings/
+
+# Vim temporary files:
+*.swn
+*.swo
+*.swp
+*.swm
