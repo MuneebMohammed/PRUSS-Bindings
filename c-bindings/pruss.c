@@ -1,4 +1,4 @@
-#include "test.h"
+#include "pruss.h"
 
 char err[4];
 char rec[1024];
