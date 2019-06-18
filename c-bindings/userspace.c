@@ -1,7 +1,7 @@
 #include "test.h"
 
 int main(){
-    PRUSS pruss;
+    PRUSS &pruss;
     PRU p0 = pruss.pru0;
     //char *ret = sendcmd("DISABLE_0");
     //printf("%s\n", ret);

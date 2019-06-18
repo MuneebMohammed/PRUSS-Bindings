@@ -45,10 +45,12 @@ char* sendcmd(char *cmd){
     char buf[1024]; 
     nbytes = snprintf(buf, sizeof(buf), cmd); 
     buf[nbytes] = '\n';
+   // printf("Sent: %s\n", buf);
     send(sock.fd, buf, strlen(buf), 0); 
 
     nbytes = recv(sock.fd, rec, sizeof(rec), 0); 
     rec[nbytes] = '\0'; 	
+   // printf("Received: %s\n", rec);
 
     sock_disconnect(); 
 	
@@ -75,6 +77,7 @@ int PRUSS_bootUp(PRUSS* pruss){
     if(pruss->on)
         return -EALREADY;
     int ret = atoi(sendcmd("PROBE_RPROC"));
+    //printf("DEBUG rprocprobe%i\n", ret);
     if(!ret){
         pruss->on = true;
         pruss->pru0.state = pruss->pru1.state = STOPPED;
@@ -234,6 +237,7 @@ int PRU_sendMsg(PRU* pru, char *message){
     strcat(command, tmp);
     strcat(command, space);
     strcat(command, message);
+    //printf("DEBUG:%s\n", command);
     sendcmd(command);
 } 
 
@@ -246,24 +250,6 @@ char* PRU_getMsg(PRU* pru){
     char tmp[3];
     sprintf(tmp, "%d", pru->chanPort);
     strcat(command, tmp);
+    //printf("DEBUG:%s\n", command);
     return sendcmd(command);
 } 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
